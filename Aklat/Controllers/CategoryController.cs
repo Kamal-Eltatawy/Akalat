@@ -13,7 +13,7 @@ namespace Aklat.Controllers
         {
             this.CategoryRepo = _category;
         }
-
+        //
 
         public IActionResult Index()
         {
