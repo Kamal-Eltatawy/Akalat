@@ -1,0 +1,86 @@
+﻿@model List<Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Order ID
+            </th>
+            <th>
+                Count
+            </th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Product Quantity
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                TotalPrice
+            </th>
+            <th>
+                OrderNote
+            </th>
+            <th>
+                UserName
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>
+                    @order.ID
+                </td>
+                <td>
+                    @order.Count
+                </td>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown button
+                    </button>
+                    <ul class="dropdown-menu list-group" aria-labelledby="dropdownMenuButton1">
+                        @foreach (var orderProduct in order.OrderProducts)
+                        {
+                            <li class="list-group-item">
+                                <p>  Product Name :  @orderProduct.Product.Name</p>
+                                <p> Product Quantity :@orderProduct.ProductQuantity </p>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <td>
+                    @order.Date
+                </td>
+                <td>
+                    @order.TotalPrice
+                </td>
+                <td>
+                    @order.OrderNote
+                </td>
+                <td>
+                    @order.User.Name
+                </td>
+
+                <td>
+                    @*                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                *@@*                 <a asp-action="Details" asp-route-id="@item.o">Details</a> |
+                *@                <a asp-area="Admin" asp-action="Delete" asp-route-id="@order.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

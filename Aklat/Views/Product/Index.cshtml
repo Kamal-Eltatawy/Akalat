@@ -1,0 +1,53 @@
+﻿@model List<Product>
+
+<div class="card-body" style="    margin-left: 548px;
+    margin-top: 43px;
+    margin-bottom: 27px;">
+    <a asp-action="Create" asp-controller="Product">
+        <div style="align-items:center" class="btn btn-success">
+
+            Add New Product
+        </div>
+    </a>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="card" style="width: 18rem; display:inline-block; margin-left: 20px ;  margin-right: 10px; margin-bottom: 46px;">
+        <div class="card-body">
+            <h5 class="card-title">@item.Name</h5>
+            <p class="card-text">  Product  Price  : @item.Price</p>
+        </div>
+        <ul class="list-group list-group-flush">
+
+
+            <li class="list-group-item">  Product  Description :@item.Description</li>
+        </ul>
+        <div class="card-body">
+            <a href="@Url.Action("Details", "Product"  )">
+                <div style="align-items:center" class="btn btn-primary">
+
+                    Details
+                </div>
+            </a>
+        </div>
+        <div class="card-body" style="    margin-left: 95px; margin-top: -69px;">
+            <a href="@Url.Action("Edit", "Product" , new { id = @item.Id }, null)">
+
+                <div style="align-items:center" class="btn btn-danger">
+
+                    Edit
+                </div>
+            </a>
+        </div>
+        <div class="card-body" style="    margin-left: 184px; margin-top: -69px;">
+            <a href="@Url.Action("Delete", "Product" )">
+                <div style="align-items:center" class="btn btn-danger">
+
+                    Delete
+                </div>
+            </a>
+        </div>
+
+    </div>
+}
