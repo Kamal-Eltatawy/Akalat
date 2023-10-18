@@ -13,7 +13,15 @@ namespace Aklat.Models
         [Required(ErrorMessage = "Product Description Cant Be Empity  ")]
         [StringLength(maximumLength: 50, MinimumLength = 2, ErrorMessage = "Product Description Must Be More Than 2 Less Than 50 Letters")]
         public string Description { get; set; }
+        
+        public string? Photo { get; set; }
+
+        [NotMapped]
+
+        public IFormFile File { get; set; }
+
         public int Stock {  get; set; }
+
         public bool IsDeleted { get; set; } = false;
 
         [Required]

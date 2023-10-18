@@ -1,5 +1,6 @@
 ﻿using Aklat.Models;
 using Aklat.Models.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Aklat.Reposatories.ProductRepo
 {
@@ -28,6 +29,11 @@ namespace Aklat.Reposatories.ProductRepo
 
         }
 
+        public List<Product> GetAllAndCat()
+        {
+            return context.Products.Include(c=>c.Category).ToList();
+        }
+
         public Product GetById(int ID)
         {
             return context.Products.FirstOrDefault(c => c.Id == ID);
@@ -39,10 +45,14 @@ namespace Aklat.Reposatories.ProductRepo
 
         }
 
+       
+
         public void Update(int id  ,Product product)
         {
            context.Update(product);
 
         }
+
+      
     }
 }

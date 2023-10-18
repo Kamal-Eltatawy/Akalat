@@ -23,6 +23,12 @@
 
             <li class="list-group-item">  Product  Description :@item.Description</li>
         </ul>
+        <ul class="list-group list-group-flush">
+
+
+            <img src="~/ProductPhoto/@item.Photo" style="width:150px; height:150px;">
+
+        </ul>
         <div class="card-body">
             <a href="@Url.Action("Details", "Product"  )">
                 <div style="align-items:center" class="btn btn-primary">

@@ -1,5 +1,6 @@
 ﻿using Aklat.Reposatories.ProductRepo;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Aklat.Areas.Admin.Controllers
 {
@@ -16,13 +17,10 @@ namespace Aklat.Areas.Admin.Controllers
             this.productRepoo = productRepoo;
             this.CategoryReposatory = categoryReposatory;
         }
-        /// <summary>
-        /// add new test  
-        /// </summary>
-        /// <returns></returns>
+        
         public IActionResult Index()
         {
-            return View(productRepoo.GetAll());
+            return View(productRepoo.GetAllAndCat());
 
         }
 
@@ -35,8 +33,20 @@ namespace Aklat.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Product product)
+       
+        public async Task<IActionResult> Create(Product product, IFormFile File)
         {
+            if (File != null)
+            { 
+                string imageName = Guid.NewGuid().ToString() + ".jpg";
+            string filePathImage = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/ProductPhoto", imageName);
+            using (var stream = System.IO.File.Create(filePathImage))
+            {
+                await File.CopyToAsync(stream);
+            }
+            product.Photo = imageName;
+        }
+
             ViewData["cat"] = CategoryReposatory.GetAll();
 
             if (ModelState.IsValid)
@@ -49,6 +59,7 @@ namespace Aklat.Areas.Admin.Controllers
             {
                 return View(product);
             }
+
 
         }
         [HttpGet]
