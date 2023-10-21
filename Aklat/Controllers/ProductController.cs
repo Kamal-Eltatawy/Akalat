@@ -1,4 +1,5 @@
-﻿using Aklat.Models;
+﻿using Akalat.ViewModel;
+using Aklat.Models;
 using Aklat.Reposatories.OrderRepo;
 using Aklat.Reposatories.ProductRepo;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,18 @@ namespace Aklat.Controllers
         }
         public IActionResult GetByID(int id)
         {
-            return PartialView("_Orderproduct", productRepoo.GetById(id));  
+            var product = productRepoo.GetById(id);
+              OrderViewModelGet orderViewModelGet = new OrderViewModelGet()
+              {
+                  ProductPrice=product.Price,
+                  orderProductHomes =new OrderProductHome
+                  {
+                      ProductID=product.Id,
+                      ProductName=product.Name,
+                  }
+              };
+           
+            return PartialView("_Orderproduct", orderViewModelGet);  
         }
         [HttpGet]
         public IActionResult Create()

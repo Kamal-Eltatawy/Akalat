@@ -20,7 +20,7 @@ namespace Aklat.Models
         public string UserID { get; set; }
         public User? User { get; set; }
         
-       public  List<OrderProduct>? OrderProducts { get; set; }
+       public  List<OrderProduct>? OrderProducts { get; set; } = new List<OrderProduct>();
 
 
     }
