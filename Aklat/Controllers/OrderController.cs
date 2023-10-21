@@ -18,6 +18,7 @@ namespace Aklat.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Order order)

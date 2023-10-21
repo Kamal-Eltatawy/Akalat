@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Product>
+
+@foreach (var product in Model)
+{
+    <button class="productContainer productrow d-flex align-items-center justify-content-around flex-column text-warning " style="background-image:url('@Url.Content($"~/img/{product.Photo}")') ;width:200px;height:100px" id="@product.Id" onclick="getSelectProduct(@product.Id)">
+            <p>@product.Name</p>
+            <p>@product.Description</p>
+    </button>
+}
+

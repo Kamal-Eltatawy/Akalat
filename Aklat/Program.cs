@@ -17,7 +17,13 @@ namespace Aklat
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AklatContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("Db")));
-            builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AklatContext>();
+            builder.Services.AddIdentity<User, IdentityRole>(option =>
+            {
+                option.Password.RequireNonAlphanumeric = false;
+                option.Password.RequireUppercase = false;
+                option.Password.RequiredLength = 6;
+            }).AddEntityFrameworkStores<AklatContext>();
+
             builder.Services.AddScoped<IOrderReposatory, OrderReposatory>();
             builder.Services.AddScoped<IProductReposatory, ProductReposatory>();
             builder.Services.AddScoped<ICategoryReposatory, CategoryReposatory>();

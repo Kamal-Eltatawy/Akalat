@@ -1,0 +1,115 @@
+﻿*{
+    box-sizing:border-box;
+}
+#container {
+    width:70vw;
+    height:30vh;
+    position :absolute;
+    margin:0;
+    right:0;
+    display: grid;
+    place-items: center
+}
+
+#slider-container {
+    width:100%;
+    height:100%;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+}
+    #slider-container .btn {
+        position: absolute;
+        top: calc(50% - 30px);
+        height: 30px;
+        width: 30px;
+        border-left: 8px solid pink;
+        border-top: 8px solid pink;
+    }
+
+        #slider-container .btn:hover {
+            transform: scale(1.2);
+        }
+
+        #slider-container .btn.inactive {
+            border-color: rgb(153, 121, 126)
+        }
+
+        #slider-container .btn:first-of-type {
+            transform: rotate(-45deg);
+            left: 10px
+        }
+
+        #slider-container .btn:last-of-type {
+            transform: rotate(135deg);
+            right: 10px;
+        }
+
+    #slider-container #slider {
+        display: flex;
+        width: 1000%;
+        height: 100%;
+        transition: all .5s;
+    }
+
+        #slider-container #slider .slide {
+            height: 90%;
+            margin: auto 10px;
+            box-shadow: 2px 2px 4px 2px white, -2px -2px 4px 2px white;
+            display: grid;
+            place-items: center;
+        }
+
+            #slider-container #slider .slide span {
+                color: black;
+                font-size: 70px;
+            }
+
+@media only screen and (min-width: 1100px) {
+
+    #slider-container #slider .slide {
+        width: calc(2.5% - 20px);
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+
+    #slider-container #slider .slide {
+        width: calc(3.3333333% - 20px);
+    }
+}
+
+@media only screen and (max-width: 900px) {
+
+    #slider-container #slider .slide {
+        width: calc(5% - 20px);
+    }
+}
+
+@media only screen and (max-width: 550px) {
+
+    #slider-container #slider .slide {
+        width: calc(10% - 20px);
+    }
+}
+
+/* Products*/
+#products{
+    background-color: red;
+    width:30vw;
+    height:100vh;
+}
+.productContainer{
+    background-position:center;
+    background-size:100% 100%;
+    object-fit:cover;
+}
+/*Orders*/
+#orders {
+    width: 70vw;
+    height: 70vh;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: forestgreen;
+}

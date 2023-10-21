@@ -1,0 +1,15 @@
+﻿@model Product
+
+
+<tr id="@Model.Id">
+    <th scope="row">@Model.Id</th>
+    <td>@Model.Name</td>
+    <td>Quantiy</td>
+    <td>@Model.Price</td>
+    <td><button>+</button></td>
+    <td><button>-</button></td>
+    <td>total</td>
+    <td>Product Note</td>
+    <td onclick="Delete(this,@Model.Id)"><button>Delete</button></td>
+</tr>
+

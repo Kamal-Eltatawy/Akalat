@@ -1,4 +1,5 @@
 ﻿using Aklat.Models;
+using Aklat.Reposatories.ProductRepo;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,16 +7,23 @@ namespace Aklat.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProductReposatory productReposatory;
+        private readonly ICategoryReposatory categoryReposatory;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProductReposatory productReposatory ,ICategoryReposatory categoryReposatory)
         {
-            _logger = logger;
+            this.productReposatory = productReposatory;
+            this.categoryReposatory = categoryReposatory;
         }
 
         public IActionResult Index()
         {
-            return View();
+            
+            return View(categoryReposatory.GetAll());
+        }
+        public IActionResult HomeProductShow(int catID)
+        {
+            return PartialView("_Products", productReposatory.GetAll().Where(i => i.CategoryId == catID)); //tolist()
         }
         public IActionResult index2()
         {

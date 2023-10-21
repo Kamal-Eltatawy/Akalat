@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Aklat.Migrations
+namespace Akalat.Migrations
 {
     [DbContext(typeof(AklatContext))]
-    [Migration("20231016200508_first")]
+    [Migration("20231020172219_first")]
     partial class first
     {
         /// <inheritdoc />
@@ -68,7 +68,7 @@ namespace Aklat.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ProductNote")
+                    b.Property<string>("OrderNote")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalPrice")
@@ -134,6 +134,9 @@ namespace Aklat.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Photo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("Money");
@@ -373,7 +376,7 @@ namespace Aklat.Migrations
             modelBuilder.Entity("Aklat.Models.OrderProduct", b =>
                 {
                     b.HasOne("Aklat.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderProducts")
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -449,6 +452,11 @@ namespace Aklat.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Aklat.Models.Order", b =>
+                {
+                    b.Navigation("OrderProducts");
                 });
 #pragma warning restore 612, 618
         }

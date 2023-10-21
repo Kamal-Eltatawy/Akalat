@@ -1,5 +1,48 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "_HomeLayout";
+}
+@model List<Category>
+@foreach (var category in Model)
+{
+    <div id="container">
+        <div id="slider-container">
+            <span onclick="slideRight()" class="btn"></span>
+            <div onclick="getProducts(@category.ID)" id="slider">
+                <div class="slide" style="background-image:url('@Url.Content($"~/Img/{category.ImageUrl}")')">
+                    <span>@category.Name</span>
+                </div>
+            </div>
+            <span onclick="slideLeft()" class="btn"></span>
+        </div>
+    </div>
+
+}
+<div id="products" class="d-flex justify-content-around"></div>
+<div id="orders">
+    <table class="table table-responsive table-dark text-white">
+        <thead>
+            <tr>
+                <th scope="col">Product ID</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Quantity</th>
+                <th scope="col">Product Price</th>
+                <th scope="col">More</th>
+                <th scope="col">Less</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Order Note</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody id="orderRow">
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="/lib/jquery/dist/jquery.min.js">  </script>
+    <script src="/assets/js/HomeScript.js"> </script>
+    <script src="/assets/js/homeLocalValidation.js"></script>
 }
 
 

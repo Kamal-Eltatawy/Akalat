@@ -26,7 +26,10 @@ namespace Aklat.Controllers
             return View(productRepoo.GetAll());
 
         }
-
+        public IActionResult GetByID(int id)
+        {
+            return PartialView("_Orderproduct", productRepoo.GetById(id));  
+        }
         [HttpGet]
         public IActionResult Create()
         {
