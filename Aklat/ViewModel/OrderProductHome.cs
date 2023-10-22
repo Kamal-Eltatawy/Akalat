@@ -7,5 +7,7 @@
         public int ProductQuantity {  get; set; }
         public decimal TotalPrice { get; set; }
         public string ProductNote { get; set; }
+        public decimal Price  { get; set; }
+
     }
 }

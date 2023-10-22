@@ -30,17 +30,21 @@ namespace Aklat.Controllers
         public IActionResult GetByID(int id)
         {
             var product = productRepoo.GetById(id);
-              OrderViewModelGet orderViewModelGet = new OrderViewModelGet()
+              var OrderProductHome = new OrderProductHome()
               {
-                  ProductPrice=product.Price,
-                  orderProductHomes =new OrderProductHome
-                  {
-                      ProductID=product.Id,
-                      ProductName=product.Name,
-                  }
+                  ProductID=product.Id,
+                  ProductName=product.Name,
+                  
+                  Price=product.Price,
+
+                  //orderProductHomes =new OrderProductHome
+                  //{
+                  //    ProductID=product.Id,
+                  //    ProductName=product.Name,
+                  //}
               };
            
-            return PartialView("_Orderproduct", orderViewModelGet);  
+            return PartialView("_Orderproduct", OrderProductHome);  
         }
         [HttpGet]
         public IActionResult Create()

@@ -32,6 +32,7 @@
                 <th scope="col">Total Price</th>
                 <th scope="col">Order Note</th>
                 <th scope="col">Delete</th>
+
             </tr>
         </thead>
         <tbody id="orderRow">
@@ -39,10 +40,50 @@
     </table>
 </div>
 
+<button  onclick="createArrayOfObjects()">Click</button>
+
 @section Scripts {
-    <script src="/lib/jquery/dist/jquery.min.js">  </script>
-    <script src="/assets/js/HomeScript.js"> </script>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/js/HomeScript.js"></script>
     <script src="/assets/js/homeLocalValidation.js"></script>
+    <script>
+        function createArrayOfObjects() {
+            const rows = document.querySelectorAll('.orderProd'); // Select all <tr> elements with the class "orderProd"
+            const dataArray = [];
+
+            rows.forEach(row => {
+                const obj = {};
+
+                // Get input elements within the current row
+                const inputs = row.querySelectorAll('input');
+
+                inputs.forEach(input => {
+                    const key = input.getAttribute('name'); // Use the 'name' attribute as the object key
+                    const value = input.value;
+                    obj[key] = value;
+                });
+
+                dataArray.push(obj); // Add the object to the array
+            });
+
+            // Send the dataArray to the server using AJAX
+            $.ajax({
+                type: "POST",
+                url: "/Order/GetPRO",
+                data: JSON.stringify(dataArray ),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    // Handle the response from the controller
+                },
+                error: function (error) {
+                    // Handle any errors
+                 
+                }
+            });
+        }
+    </script>
 }
+
 
 

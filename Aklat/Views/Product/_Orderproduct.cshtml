@@ -1,17 +1,18 @@
 ﻿@using Akalat.ViewModel;
-@model OrderViewModelGet
+@model OrderProductHome
 
 
-<tr id="@Model.orderProductHomes.ProductID">
+<tr class="orderProd" id="@Model.ProductID">
   
-    <th scope="row">@Model.orderProductHomes.ProductID</th>
-    <td>@Model.orderProductHomes.ProductName</td>
-@*      <td><input asp-for="s" type="number" /></td>
- *@     <td>@Model.</td>
+    <td> <input name="ProductID" readonly value="@Model.ProductID" /></td>
+    <td><input type="text" name="ProductName" readonly value="@Model.ProductName" /></td>
+
+    <td><input type="number" name="ProductQuantity" value="@Model.ProductQuantity" /></td>
+    <td><input type="number" name="Price" readonly value="@Model.Price" /></td>
     <td><button>+</button></td>
     <td><button>-</button></td>
     <td>total</td>
-    <td>Product Note</td>
-    <td onclick="Delete(this,@Model.orderProductHomes.ProductID)"><button>Delete</button></td>
+    <td> <input type="text" name="ProductNote" value="@Model.ProductNote" /> </td>
+    <td onclick="Delete(this,@Model.ProductID)"><button>Delete</button></td>
 </tr>
 

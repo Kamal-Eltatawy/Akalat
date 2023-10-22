@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Akalat.Migrations
 {
     [DbContext(typeof(AklatContext))]
-    [Migration("20231020220119_adding img catalog")]
-    partial class addingimgcatalog
+    [Migration("20231021195230_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
