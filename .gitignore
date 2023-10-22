@@ -375,3 +375,4 @@ FodyWeavers.xsd
 /Aklat/Migrations/AklatContextModelSnapshot.cs
 /Aklat/Migrations/20231020172219_first.cs
 /Aklat/Migrations/20231021195230_v1.cs
+/Aklat/ViewModel/OrderViewModelPost.cs
