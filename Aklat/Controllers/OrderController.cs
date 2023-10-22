@@ -38,7 +38,7 @@ namespace Aklat.Controllers
 
                 count += item.ProductQuantity;
 
-                orderprices += item.Price;
+                orderprices += item.TotalPrice;
 
             }
             order.Count = count;
