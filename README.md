@@ -1,7 +1,7 @@
 # Talabat
 ---
 
-**Project Title**: ASP.NET MVC Point of Sale System with Authentication and Authorization
+**Project Title**: ASP.NET MVC Point of Sale System 
 
 **Description**:
 
