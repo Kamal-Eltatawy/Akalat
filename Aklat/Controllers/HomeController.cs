@@ -1,10 +1,12 @@
 ﻿using Aklat.Models;
 using Aklat.Reposatories.ProductRepo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace Aklat.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IProductReposatory productReposatory;

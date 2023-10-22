@@ -3,15 +3,16 @@
 
 
 <tr class="orderProd" id="@Model.ProductID">
-  
+
     <td> <input name="ProductID" readonly value="@Model.ProductID" /></td>
     <td><input type="text" name="ProductName" readonly value="@Model.ProductName" /></td>
-
-    <td><input type="number" name="ProductQuantity" value="@Model.ProductQuantity" /></td>
-    <td><input type="number" name="Price" readonly value="@Model.Price" /></td>
-    <td><button>+</button></td>
-    <td><button>-</button></td>
-    <td>total</td>
+    <td>
+        <input type="number" oninput="adjustQuantity(this)" name="ProductQuantity" min="1" value="1" data-original-value="1" />
+    </td>
+    <td><input type="number" id="Price" name="Price" readonly value="@Model.Price" /></td>
+    <td><button onclick="add(this)">+</button></td>
+    <td><button onclick="less(this)">-</button></td>
+    <td><input type="number" id="TotalPrice" name="TotalPrice" readonly value="@Model.TotalPrice" /></td>
     <td> <input type="text" name="ProductNote" value="@Model.ProductNote" /> </td>
     <td onclick="Delete(this,@Model.ProductID)"><button>Delete</button></td>
 </tr>

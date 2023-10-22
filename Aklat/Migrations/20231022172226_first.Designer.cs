@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Akalat.Migrations
 {
     [DbContext(typeof(AklatContext))]
-    [Migration("20231021195230_v1")]
-    partial class v1
+    [Migration("20231022172226_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -10,7 +10,6 @@ namespace Aklat.Models
         [ForeignKey("Order")]
         public int OrderID { get; set; }
         public bool IsDeleted { get; set; } = false;
-
         public Order? Order { get; set; }
         [ForeignKey("Product")]
         public int ProductId { get; set; }

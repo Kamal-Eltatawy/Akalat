@@ -2,10 +2,13 @@
 using Aklat.Models;
 using Aklat.Reposatories.OrderProductRepo;
 using Aklat.Reposatories.OrderRepo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Aklat.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderReposatory orderReposatory;
@@ -29,26 +32,21 @@ namespace Aklat.Controllers
             var orderData = orderdatafromview.DataArray;
             var note = orderdatafromview.Note;
             var count = 0;
-            decimal orderprices = 0;
             Order order = new Order();
-
 
             foreach (var item in orderData)
             {
 
                 count += item.ProductQuantity;
+                order.TotalPrice += item.TotalPrice;
 
-                orderprices += item.TotalPrice;
 
             }
             order.Count = count;
             order.OrderNote = note; 
-            order.TotalPrice = orderprices;
-
-
             order.Date = DateTime.Now;
 
-            order.UserID = "434d767c-704d-4ed8-a96f-5b6952237f62";
+            order.UserID = User.Claims.FirstOrDefault(i=>i.Type==ClaimTypes.NameIdentifier).Value;
 
             orderReposatory.Create(order);
 
@@ -56,7 +54,7 @@ namespace Aklat.Controllers
 
             foreach (var item in orderData)
             {
-                order.OrderProducts.Add(new OrderProduct()
+                order.OrderProducts?.Add(new OrderProduct()
                 {
                     OrderID = order.ID,
 
@@ -72,11 +70,10 @@ namespace Aklat.Controllers
 
             //// Return a response if needed
             //return Ok("Data received and processed successfully.");
-            return View(orderData);
+            return Redirect("/product/index");
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         //public IActionResult Create([FromBody] test viewModel)
         //{
 
