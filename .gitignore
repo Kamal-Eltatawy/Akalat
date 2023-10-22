@@ -373,3 +373,4 @@ FodyWeavers.xsd
 /Aklat/Migrations/20231016201903_addorderNote.cs
 /Aklat/Migrations/20231017183659_ِAddPhoto.cs
 /Aklat/Migrations/AklatContextModelSnapshot.cs
+/Aklat/Migrations/20231020172219_first.cs
