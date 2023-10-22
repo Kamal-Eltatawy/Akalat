@@ -39,7 +39,7 @@
         </tbody>
     </table>
 </div>
-
+<input type="text" id="note" value="mo" />
 <button  onclick="createArrayOfObjects()">Click</button>
 
 @section Scripts {
@@ -65,12 +65,19 @@
 
                 dataArray.push(obj); // Add the object to the array
             });
+            var noteinpute = document.getElementById("note")
+            var note = noteinpute.value;
+
+            const requestData = {
+                dataArray: dataArray,
+                note: note
+            };
 
             // Send the dataArray to the server using AJAX
             $.ajax({
                 type: "POST",
                 url: "/Order/GetPRO",
-                data: JSON.stringify(dataArray ),
+                data: JSON.stringify(requestData),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {

@@ -23,43 +23,51 @@ namespace Aklat.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult GetPRO([FromBody] List<OrderProductHome> orderData)
+        public IActionResult GetPRO([FromBody] orderdatafromview orderdatafromview )
         {
             // Handle the received data, e.g., save it to a database
+            var orderData = orderdatafromview.DataArray;
+            var note = orderdatafromview.Note;
             var count = 0;
             decimal orderprices = 0;
             Order order = new Order();
-           
+
 
             foreach (var item in orderData)
             {
-                
-                  
-                
+
                 count += item.ProductQuantity;
+
                 orderprices += item.Price;
 
             }
-            //foreach (var item in orderData )
-            //{
-            //    order.OrderProducts.Add(new OrderProduct()
-            //    {
-            //        OrderID = order.ID,
-            //        ProductId = item.ProductID,
-            //        ProductQuantity = item.ProductQuantity,
-            //    });
-            //}
-
             order.Count = count;
-            order.OrderNote = "no";
+            order.OrderNote = note; 
             order.TotalPrice = orderprices;
 
 
             order.Date = DateTime.Now;
+
             order.UserID = "434d767c-704d-4ed8-a96f-5b6952237f62";
 
-
             orderReposatory.Create(order);
+
+            orderReposatory.Save();
+
+            foreach (var item in orderData)
+            {
+                order.OrderProducts.Add(new OrderProduct()
+                {
+                    OrderID = order.ID,
+
+                    ProductId = item.ProductID,
+
+                    ProductQuantity = item.ProductQuantity,
+                    ProductNote = item.ProductNote,
+
+                });
+            }
+
             orderReposatory.Save();
 
             //// Return a response if needed
