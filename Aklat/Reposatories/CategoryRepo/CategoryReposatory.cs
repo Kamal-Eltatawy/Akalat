@@ -6,10 +6,12 @@ namespace Aklat.Reposatories.CategoryRepo
     public class CategoryReposatory : ICategoryReposatory
     {
         private readonly AklatContext context;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public CategoryReposatory(AklatContext aklatContext)
+        public CategoryReposatory(AklatContext aklatContext, IWebHostEnvironment webHostEnvironment)
         {
             this.context = aklatContext;
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         public List<Category> GetAll()
@@ -23,7 +25,10 @@ namespace Aklat.Reposatories.CategoryRepo
 
         public void Create(Category category) // make sure if category is a view model or not
         {
-           context.Categories.Add(category);
+         
+
+            context.Categories.Add(category);
+
         }
 
         public void Delete(int id)

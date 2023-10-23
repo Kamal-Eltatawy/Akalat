@@ -16,7 +16,9 @@ namespace Aklat.Models
         [StringLength(maximumLength: 50, MinimumLength = 3, ErrorMessage = "Category Type Must Be More Than 3 Less Than 50 Letters")]
         public string Type { get; set; }
         
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
+        [NotMapped]
+        public IFormFile File { get; set; }
         public bool IsDeleted { get; set; } = false;
     }
 }

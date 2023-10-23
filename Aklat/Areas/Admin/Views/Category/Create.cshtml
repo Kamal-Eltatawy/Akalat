@@ -11,9 +11,10 @@
 
         <h4>Category</h4>
         <hr />
+       
         <div class="row">
-            <div class="col-md-4">
-                <form method="post" asp-action="Create" asp-controller="Category" asp-area="Admin">
+            <div class="col-md-6">
+                <form method="post" asp-action="Create" asp-controller="Category" asp-area="Admin" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
@@ -27,10 +28,37 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <label  class="form-label mt-4"></label>
+                        <input id="file"  type="file" class="form-control" asp-for="File" name="File" />
+                        
+                        <span asp-validation-for="ImageUrl" class="text-danger d-block"> </span>
+
                     </div>
+
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+
+
+                    
+
+                    </div>
+
+
+
+                  
+
+                     
                 </form>
+
             </div>
+
+            <div class="col-md-6 d-flex justify-content-center pt-3 overflow-hidden ">
+                <img src="" class="cover-preview d-none  " alt="Cover"   style="max-height:500px" />
+
+            </div>
+
         </div>
 
         <div>
@@ -43,4 +71,20 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+
+
+    <Partial name="_ValidationScriptsPartial" />
+
+
+
+
+    <script src="~/js/AdminPreviewImg.js" asp-append-version="true"></script>
+
+     
+
+
+
 }
+

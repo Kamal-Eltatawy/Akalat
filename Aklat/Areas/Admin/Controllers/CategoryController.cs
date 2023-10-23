@@ -1,18 +1,26 @@
-﻿using Aklat.Models;
+﻿using Akalat.GeneralSettings;
+using Aklat.Models;
 using Aklat.Reposatories.OrderRepo;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.IO;
 
 namespace Admin.Aklat.Controllers
 {
     [Area("Admin")]
+
     public class CategoryController : Controller
     {
         private readonly ICategoryReposatory CategoryRepo;
+        private readonly IWebHostEnvironment webHostEnvironment;
 
-        public CategoryController(ICategoryReposatory _category)
+        private readonly string _imagepath;
+
+        public CategoryController(ICategoryReposatory _category, IWebHostEnvironment webHostEnvironment)
         {
             this.CategoryRepo = _category;
+            this.webHostEnvironment = webHostEnvironment;
+            _imagepath = $"{webHostEnvironment.WebRootPath}{GeneralVariables.ImgCategoryPath}";
         }
         //
 
@@ -30,8 +38,20 @@ namespace Admin.Aklat.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Category category)
+        public async Task <IActionResult> Create(Category category,IFormFile File)
         {
+            if (File != null)
+            {
+                var CoverName = $"{Guid.NewGuid()}{Path.GetExtension(category.File.FileName)}";
+
+                var path = Path.Combine(_imagepath, CoverName);
+                using var stream = System.IO.File.Create(path);
+                await File.CopyToAsync(stream);
+                category.ImageUrl = CoverName;
+
+
+            }
+
 
             if (ModelState.IsValid)
             {

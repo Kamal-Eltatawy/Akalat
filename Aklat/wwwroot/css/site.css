@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* pic prieview*/
+.cover-preview {
+    max-height: 300px;
+    border-radius: 8px
+
+}
