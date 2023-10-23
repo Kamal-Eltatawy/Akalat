@@ -10,10 +10,10 @@
         <input type="number" oninput="adjustQuantity(this)" name="ProductQuantity" min="1" value="1" data-original-value="1" />
     </td>
     <td><input type="number" id="Price" name="Price" readonly value="@Model.Price" /></td>
-    <td><button onclick="add(this)">+</button></td>
-    <td><button onclick="less(this)">-</button></td>
+    <td><button onclick="add(this)" class="btn btn-success">+</button></td>
+    <td><button onclick="less(this)" class="btn btn-success">-</button></td>
     <td><input type="number" id="TotalPrice" name="TotalPrice" readonly value="@Model.TotalPrice" /></td>
     <td> <input type="text" name="ProductNote" value="@Model.ProductNote" /> </td>
-    <td onclick="Delete(this,@Model.ProductID)"><button>Delete</button></td>
+    <td onclick="Delete(this,@Model.ProductID)"><button class="btn btn-danger">Delete</button></td>
 </tr>
 

@@ -60,6 +60,7 @@ function Delete(e, id) {
     }
 }
 function createArrayOfObjects() {
+    const rowsContaner = document.querySelector('#orderRow'); // Select all <tr> elements with the class "orderProd"
     const rows = document.querySelectorAll('.orderProd'); // Select all <tr> elements with the class "orderProd"
     const dataArray = [];
     rows.forEach(row => {
@@ -92,13 +93,17 @@ function createArrayOfObjects() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
+         
         },
         error: function (error) {
             // Handle any errors
             console.log(error);
         }
     });
+    //Reset Inputs and table
     localStorage.removeItem("ProductsOrderId");
+    noteinpute.value = "";
+    rowsContaner.innerHTML = '';
 }
 
 function add(e) {

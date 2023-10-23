@@ -3,25 +3,32 @@
     Layout = "_HomeLayout";
 }
 @model List<Category>
-@foreach (var category in Model)
-{
-    <div id="container">
-        <div id="slider-container">
+
+    <div id="container" >
+    <div id="slider-container" class="bg-gradient-dark">
             <span onclick="slideRight()" class="btn"></span>
-            <div onclick="getProducts(@category.ID)" id="slider">
-                <div class="slide" style="background-image:url('@Url.Content($"~/Img/{category.ImageUrl}")')">
-                    <span>@category.Name</span>
-                </div>
+        <div id="slider" >
+            @foreach (var category in Model)
+                {
+                    <div class="slide productContainer productrow d-flex align-items-center  rounded no-border
+                    justify-content-around flex-column text-black  "
+                    onclick="getProducts(@category.ID)"
+                    style="background-image:url('@Url.Content($"~/Img/{category.ImageUrl}")')">
+                    <span  class="catName fs-5 text-white">@category.Name</span>
+                    </div>
+                }
             </div>
             <span onclick="slideLeft()" class="btn"></span>
         </div>
     </div>
 
-}
-<div id="products" class="d-flex justify-content-around"></div>
-<div id="orders">
-    <table class="table table-responsive table-dark text-white">
-        <thead>
+
+<div id="products" class="p-4 d-flex justify-content-around align-items-start row g-2 " style="box-shadow: -10px -10px 20px 5px white inset;">
+    
+</div>
+<div id="orders" class="d-flex flex-column justify-content-between overflow-scroll ">
+    <table class="table table-striped table-dark m-0 ">
+        <thead class="thead-light" >
             <tr>
                 <th scope="col">Product ID</th>
                 <th scope="col">Product Name</th>
@@ -38,9 +45,15 @@
         <tbody id="orderRow">
         </tbody>
     </table>
+    <div class="p-5 d-flex flex-column justify-content-between align-items-center ">
+        <div class="w-100 d-flex flex-column justify-content-between align-items-center ">
+
+        <label for="note" class="text-light fs-4">Order Note</label>
+        <input type="text" value="" id="note" class="form-control my-2 w-75" ></input>
+        </div>
+        <button  class="mt-2 btn btn-outline-success w-50" onclick="createArrayOfObjects()">Click</button>
+    </div>
 </div>
-<input type="text" id="note"  />
-<button  onclick="createArrayOfObjects()">Click</button>
 
 @section Scripts {
     <script src="/lib/jquery/dist/jquery.min.js"></script>
