@@ -376,3 +376,6 @@ FodyWeavers.xsd
 /Aklat/Migrations/20231020172219_first.cs
 /Aklat/Migrations/20231021195230_v1.cs
 /Aklat/ViewModel/OrderViewModelPost.cs
+/Aklat/Migrations/20231022172226_first.cs
+/Aklat/Migrations/20231023124039_v1.cs
+/Aklat/Migrations/20231023124039_v1.Designer.cs
